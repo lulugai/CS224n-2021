@@ -175,8 +175,10 @@ class CharCorruptionDataset(Dataset):
         truncate_doc = document[:length]
         actual_len = len(truncate_doc)
         #  [prefix] [masked_content] [suffix]
-        start_idx = random.randint(1, actual_len - 2)
-        end_idx = random.randint(start_idx + 1, actual_len - 1)
+        len_mask = int(actual_len / 4)
+        start_idx = random.randint(1, actual_len - 2 - len_mask)
+        # end_idx = random.randint(start_idx + 1, actual_len - 1)
+        end_idx = int(start_idx + len_mask)
         prefix = truncate_doc[:start_idx]
         masked_content = truncate_doc[start_idx:end_idx]
         suffix = truncate_doc[end_idx:]
