@@ -121,7 +121,7 @@ class ParserModel(nn.Module):
         # embed.weight = nn.Parameter(torch.tensor(self.embeddings))
         # x = embed(w)
         # x = x.view(x.size()[0], -1)        
-        x = self.embeddings[w].view(w.size()[0], -1)
+        x = self.embeddings[w].view(w.size()[0], -1)#bxTxC -> bxT*C
         
         ### END YOUR CODE
         return x
